@@ -31,5 +31,3 @@ Este projeto demonstra a criação de uma interface de linha de comando (CLI) pa
 ## 📈 Conquistas Académicas
 A base teórica para este repositório foi consolidada através da conclusão da trilha **Python Foundations** no Mimo, cobrindo desde lógica básica até **Programação Orientada a Objetos (POO)** e tratamento de erros.
 
----
-✨ *Desenvolvido por [Teu Nome] - Estudante de ADS na FATEC Franca.*
