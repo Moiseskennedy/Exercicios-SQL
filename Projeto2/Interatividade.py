@@ -1,7 +1,7 @@
 import sqlite3
 from tabulate import tabulate
 
-BD_PATH = '/storage/emulated/0/Documents/SQL/Projeto2/meu_aprendizado2.db'
+BD_PATH = 'meu_aprendizado2.db'
 
 # FUNÇÃO 1: APENAS LISTAR
 def listar_usuarios():
