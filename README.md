@@ -1,3 +1,4 @@
 ### Almentando os meus conhecimentos em Banco de Dados SQLite
 
- - **meu_banco1.py:** Primeiro Programa de teste
+ - **Projeto1:** Primeiro Programa de teste
+ - **Projeto2:** Interatividade com o Banco de Dados SQLite (login)
