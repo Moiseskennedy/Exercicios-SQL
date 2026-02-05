@@ -1,6 +1,6 @@
 import sqlite3
 
-conexao = sqlite3.connect('meu_aprendizado.db') 
+conexao = sqlite3.connect('/storage/emulated/0/Documents/SQL/Projeto1/meu_aprendizado.db')
 #Bucando OU criando um arquivo banco e conectando
 
 cursor = conexao.cursor()
