@@ -11,7 +11,7 @@ def listar_usuarios():
         
         dados = cursor.fetchall()
         colunas = ["ID", "NOME", "E-MAIL"]
-        print("\n" + tabulate(dados, headers=colunas, tablefmt="grid"))
+        print("\n" + tabulate(dados, headers=colunas, tablefmt="fancy_grid"))
         
         return dados
 
