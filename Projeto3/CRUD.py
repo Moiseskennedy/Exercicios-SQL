@@ -2,7 +2,7 @@ import sqlite3
 from tabulate import tabulate
 
 
-BD_PATH = "sistema_treino.db"
+BD_PATH = "/storage/emulated/0/Documents/SQL/Aprendendo/CRUD/sistema_treino.db"
 
 #1. CREATE (Inserir Usuario)
 def criar_usuario(nome, email):
@@ -12,13 +12,13 @@ def criar_usuario(nome, email):
       cursor.execute("INSERT INTO usuarios (nome, email) VALUES (?,?)", (nome, email))
       conexao.commit()
       
-      print(f'O nome: {nome} e o e-mail{email} foi guardado no SQLite!')
+      print(f'\n\033[1;32mO nome: \033[1;35m{nome}\033[m \033[1;32me o e-mail: \033[1;34m{email}\033[m \033[1;32mfoi guardado no SQLite!\033[m')
       
     except sqlite3.IntegrityError:
-      print(f'Email já existente no Banco de Dados!')
+      print(f'\033[1;31mEmail já existente no Banco de Dados!\033[m')
       
     except Exception as e:
-      print('Ocorreu um erro inesperado')
+      print('\n\033[1;31mOcorreu um erro inesperado\033[m')
 
 
 #2. READ (Ler todos os Usuarios)
@@ -40,18 +40,18 @@ def atualizar_email(id_usuario, novo_nome, novo_email):
     
     try:
       cursor.execute("UPDATE usuarios SET nome = ?, email = ? WHERE id = ?", (novo_nome, novo_email, id_usuario))
-      conexao.commit()
       
       if cursor.rowcount == 0:
-        print(f'Aviso: O usuário com o ID {id_usuario} não foi encontrado. Nada foi alterado.')
+        print(f'\n\033[1;31mAviso: O usuário com o ID: \033[1;34m{id_usuario}\033[m \033[1;31mnão foi encontrado. Nada foi alterado.\033[m')
       else:
-        print(f"Sucesso! {cursor.rowcount} linha(s) atualizada(s)")
+        print(f'\n\033[1;32mSucesso! \033[1;34m{cursor.rowcount}\033[m \033[1;32mlinha(s) atualizada(s)\033[m')
+        conexao.commit()
       
     except sqlite3.IntegrityError:
-      print(f'Email já existente no Banco de Dados!')
+      print(f'\n\033[1;31mEmail já existente no Banco de Dados!\033[m')
       
     except Exception as e:
-      print('Ocorreu um erro inesperado')
+      print('\n\033[1;31mOcorreu um erro inesperado\033[m')
     
 
 #Delete (apagar um usuario pelo ID)
@@ -59,13 +59,13 @@ def deletar_usuario(id_usuario):
   with sqlite3.connect(BD_PATH) as conexao:
     cursor = conexao.cursor()
     cursor.execute("DELETE FROM usuarios WHERE id = ?", (id_usuario,))
-    conexao.commit()
     
     if cursor.rowcount == 0:
-      print(f'ERROR: O ID {id_usuario} não existe! Nada foi removido...')
+      print(f'\n\033[1;31mERROR: O ID \033[1;34m{id_usuario}\033[m \033[1;31mnão existe! Nada foi removido...\033[m')
     else:
-      print(f'ID {id_usuario} foi removido!')
-    
+      print(f'\n\033[1;32mID \033[1;34m{id_usuario}\033[m \033[1;32mfoi removido!\033[m')
+      conexao.commit()
+      
 # EXECUÇÃO DE TESTE
 def tabela_CRUD():
   with sqlite3.connect(BD_PATH) as conexao:
@@ -90,29 +90,32 @@ def tabela_CRUD():
       Opcão: """).upper()
       
       if opcao == 'C':
-        nome = input('Digite um nome: ').upper()
-        email = input('Digite um email: ').lower()
+        nome = input('\n\033[1;33mDigite um nome:\033[m ').upper()
+        email = input('\033[1;33mDigite um email:\033[m ').lower()
         criar_usuario(nome, email)
       
       elif opcao == 'L':
         ler_usuarios()
       
       elif opcao == 'A':
-        id_usuario = int(input('Qual ID de usuario você quer modificar: '))
+        id_usuario = int(input('\n\033[1;33mQual ID de usuario você quer modificar:\033[m '))
         
-        novo_nome = input('Digite o nome do novo Usuário: ').upper()
+        novo_nome = input('\033[1;33mDigite o nome do novo Usuário:\033[m ').upper()
         
-        novo_email = input('Digite o novo Email do Usuário: ').lower()
+        novo_email = input('\033[1;33mDigite o novo Email do Usuário:\033[m ').lower()
         
         atualizar_email(id_usuario, novo_nome, novo_email)
       
       elif opcao == 'D':
-        id_usuario = int(input('Digite o numero de ID que você quer deletar: '))
+        id_usuario = int(input('\n\033[1;33mDigite o numero de ID que você quer deletar:\033[m '))
     
         deletar_usuario(id_usuario)
         
       elif opcao == 'S':
-        print('Saindo do Sistema! Até logo...')
+        print('\n\033[1;34mSaindo do Sistema! Até logo...\033[m')
         break
+      
+      else:
+        print('\n\033[1;31mERROR! Dados invalidos, tente novamete... \033[m')
 
 tabela_CRUD()
