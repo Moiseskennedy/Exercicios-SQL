@@ -2,7 +2,7 @@ import sqlite3
 from tabulate import tabulate
 
 
-BD_PATH = "/storage/emulated/0/Documents/SQL/Aprendendo/CRUD/sistema_treino.db"
+BD_PATH = "sistema_treino.db"
 
 #1. CREATE (Inserir Usuario)
 def criar_usuario(nome, email):
